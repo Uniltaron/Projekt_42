@@ -1,0 +1,23 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+<h1>Kontakte :: &Uuml;bersicht</h1>
+<p>
+{% if cities %}
+<table>
+<tr>
+<th>Stadt</th>
+<th>Anzahl Kontakte</th>
+</tr>
+{% for city in cities %}
+<tr>
+<td>{{ city[0] | safe }}</td>
+<td align="center">{{ city[1] | safe }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<b>Noch keine St&auml;dte, bei den Kontakten vorhanden sind (oder noch keine Kontakte eingetragen)!</b>
+{% endif %}
+</p>
+{% endblock %}

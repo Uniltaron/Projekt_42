@@ -1,0 +1,31 @@
+{% extends 'base.jinja' %}
+
+{% block title %}Flaskspiel - Login{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<p>
+Vorbereitung f&uuml;r das Login-Formular:
+<br />
+<form method="POST" action="{{ url_for('login', next=request.args.get('next')) }}">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }} {{ form.username(size=20) }}
+    {% if form.username.errors %}
+    {% for error in form.username.errors %}
+    <span class=text-error>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+    <br />
+    {{ form.password.label }} {{ form.password(size=20) }}
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+    <span class=text-error>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+    <br />
+    {{ form.remember.label }} {{ form.remember(size=20) }}
+    <br />
+    <input type="submit" value="Go">
+</form>
+</p>
+{% endblock %}

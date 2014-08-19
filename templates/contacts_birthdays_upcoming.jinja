@@ -1,0 +1,25 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+<h1>Kontakte :: Geburtstage in den kommenden 30 Tagen</h1>
+<p>
+{% if contacts %}
+<table>
+<tr>
+<th>Kontakt</th>
+<th>Geburtstag</th>
+<th>Alter</th>
+</tr>
+{% for contact in contacts %}
+<tr>
+<td>{{ contact.lastname }}, {{ contact.firstname }}</td>
+<td>{{ contacts[contact]["birthdate"] }}</td>
+<td>{{ contacts[contact]["age"] }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<b>Keine Geburtstage in den kommenden 30 Tagen</b>
+{% endif %}
+</p>
+{% endblock %}

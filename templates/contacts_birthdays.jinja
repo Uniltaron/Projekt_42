@@ -1,0 +1,21 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+<h1>Kontakte :: Geburtstags&uuml;bersicht</h1>
+<p>
+{% if contacts_sorted %}
+{% for contact in contacts_sorted %}
+<h3>{{ contacts_sorted[contact]['month'] }}</h3>
+<ul>
+{% for person in contacts_sorted[contact]['contacts'] %}
+<li>{{ person.lastname }}, {{ person.firstname }} :: {{ person.birthdate }}</li>
+{% else %}
+<li>keine Geburtstage in diesem Monat</li>
+{% endfor %}
+</ul>
+{% endfor %}
+{% else %}
+<b>Noch keine Kontakte eingetragen!</b>
+{% endif %}
+</p>
+{% endblock %}

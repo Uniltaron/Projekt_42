@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<title>{% block title %}Deine Adressbuch App{% endblock %}</title>
+</head>
+<body>
+<div id="navigation">
+{% if current_user.is_anonymous() %}
+<a href="{{ url_for('index') }}">Startseite</a>
+<a href="{{ url_for('login') }}">Login</a>
+{% else %}
+<b>Navigation:</b>
+<br />
+<a href="{{ url_for('index') }}">Startseite</a>
+<a href="{{ url_for('logged_in') }}">Dashboard</a>
+<a href="{{ url_for('password') }}">eigenes Passwort ändern</a>
+<a href="{{ url_for('user_list') }}">Liste aller Nutzer</a>
+<a href="{{ url_for('logout') }}">Ausloggen</a>
+<br /><br />
+<b>Adressbuch:</b><br />
+<a href="{{ url_for('contacts') }}">Alle Kontakte</a> :: <a href="{{ url_for('contacts_search') }}">Suche</a> :: <a href="{{ url_for('contact_add') }}">Kontakt hinzuf&uuml;gen</a> :: <a href="{{ url_for('contacts_cities') }}">Orte</a> :: <a href="{{ url_for('contacts_birthdays_upcoming') }}">Kommende Geburtstage</a> :: <a href="{{ url_for('contacts_birthdays') }}">Geburtstagsliste</a>
+{% endif %}
+</div>
+<div id="content">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block content%}Here be content...{% endblock %}
+</div>
+</body>
+</html>

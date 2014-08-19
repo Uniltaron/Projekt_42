@@ -1,0 +1,28 @@
+{% extends 'base.jinja' %}
+
+{% block title %}Dein Kontakte Buch - Home{% endblock%}
+{% block content %}
+<p>
+<h1>
+Herzlich willkommen in deinem persönlichen Kontakte Buch
+</h1>
+<br /><br>
+Hier kannst du all deine Kontakte hinterlegen. Ausserdem bietet dir diese App noch jede Menge weiterer nützlicher Funktionen.
+<br>
+Probier die App doch sogleich aus!
+<br>
+<br>
+<a href="{{ url_for('adressbuch') }}">Adressbuch</a>
+
+
+{% if current_user.is_anonymous() %}
+You are not logged in...<br /><br />
+<a href="{{ url_for('login') }}">Login</a>
+{% else %}
+You are logged in...<br /><br />
+<a href="{{ url_for('logout') }}">Logout</a>
+{% endif %}
+
+
+</p>
+{% endblock %}

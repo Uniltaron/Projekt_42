@@ -1,0 +1,32 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+<h1>Dein Adressbuch</h1>
+<p>
+{% if contacts %}
+<table>
+<tr>
+<th>Nachname</th>
+<th>Vorname</th>
+<th>Geburtsdatum</th>
+<th>Email</th>
+<th>Aktionen</th>
+<th>letzter Kontakt</th>
+</tr>
+{% for contact in contacts %}
+<tr>
+<td>{{ contact.nachname }}</td>
+<td>{{ contact.vorname }}</td>
+<td>{{ contact.geburtstag }}</td>
+<td>{{ contact.email }}</td>
+<td>{{ contact.lastseen}}</td>
+
+<td><a href="{{ url_for('contact_edit', contact_id=contact.id) }}">bearbeiten</a> | <a href="{{ url_for('contact_delete', contact_id=contact.id) }}">l&ouml;schen</a>| <a href="{{ url_for('contact_show', contact_id=contact.id) }}">anzeigen</a></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<b>Dein Adressbuch ist noch leer. Schreib doch ein paar Kontakte rein!</b>
+{% endif %}
+</p>
+{% endblock %}
