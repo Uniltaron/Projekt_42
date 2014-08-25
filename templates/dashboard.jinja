@@ -1,4 +1,4 @@
-{% extends 'base.jinja' %}
+{% extends 'base2.jinja' %}
 
 {% block title %}Adressbuch-App Dashboard{% endblock %}
 
@@ -27,8 +27,12 @@ Von hier aus kannst du alle Funktionen von Adressbuch-App nutzen. Viel Spass dab
 <a href="{{ url_for('contact_add') }}">Kontakt hinzuf&uuml;gen</a></br>
 <a href="{{ url_for('contacts_cities') }}">Orte</a></br>
 <a href="{{ url_for('contacts_birthdays_upcoming') }}">Kommende Geburtstage</a></br>
-<a href="{{ url_for('contacts_birthdays') }}">Geburtstagsliste</a>
-{% endif %}
+<a href="{{ url_for('contacts_birthdays') }}">Geburtstagsliste</a></br>
+<a href="{{ url_for('tagebuch') }}">Tagebuch</a>
+
+
+    {% endif %}
+
 </div>
 <div id="content">
 {% with messages = get_flashed_messages() %}

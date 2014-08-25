@@ -9,6 +9,7 @@ class User(UserMixin, Base):
     id = Column(Integer, primary_key=True)
     username = Column(Text, nullable=False, unique=True)
     password = Column(Text, nullable=False)
+    tagebucheintrag = Column(Text, nullable=False)
     active = Column(Boolean, nullable=False, default=True)
 
     def __init__(self, username=None, password=None, active=False):

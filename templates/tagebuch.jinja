@@ -1,0 +1,30 @@
+{% extends 'base2.jinja' %}
+
+{% block title %}Adressbuch-App Tagebuch{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('tagebuch', next=request.args.get('next')) }}">
+
+
+<h1>Dein Adressbuch-App Tagebuch</h1></br>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+    <span class="input-group-addon">Dein Tagebucheintrag</span>
+    {{form.tagebuch(class_="form-control", rows="3") }}
+
+
+</p>
+
+<input type="submit" value="klick" class="btn btn-primary">
+
+</form>
+{% endblock %}

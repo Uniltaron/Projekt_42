@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}Deine Adressbuch App{% endblock %}</title>
+
+    <!--Bootstrap-->
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+</head>
+<body>
+    {% block content%} Mein Content {%endblock%}
+
+</body>
+</html>

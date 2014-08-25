@@ -26,6 +26,10 @@ class EditUserForm(Form):
     username = TextField('Username', validators=[DataRequired(), Length(min=5)])
     active = BooleanField('Active', default=True)
 
+class TagebuchForm(Form):
+    tagebuch = TextField('Tagebuch', validators=[DataRequired(), Length(min=5)])
+
+
 class NewContactForm(Form):
     lastname = TextField('Nachname', validators=[DataRequired()])
     firstname = TextField('Vorname', validators=[DataRequired()])

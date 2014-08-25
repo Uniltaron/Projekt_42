@@ -3,7 +3,7 @@ import config
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
 from models import User, Contact
 from database import db_session
-from forms import LoginForm, EditPasswordForm, NewUserForm, EditUserForm, EditUserPasswordForm, NewContactForm, ContactSearchForm
+from forms import LoginForm, EditPasswordForm, NewUserForm, TagebuchForm, EditUserForm, EditUserPasswordForm, NewContactForm, ContactSearchForm
 from hash_passwords import make_hash
 from sqlalchemy import asc, func
 import datetime
@@ -64,6 +64,20 @@ def logout():
 @login_required
 def logged_in():
     return render_template('dashboard.jinja')
+
+@app.route('/tagebuch', methods=["GET", "POST"])
+@login_required
+def tagebuch():
+    user = User.query.filter_by(id=current_user.id).first()
+    form = TagebuchForm()
+    if form.validate_on_submit():
+        if user is not None:
+            user.tagebucheintrag = form.tagebuch
+            db_session.add(user)
+            db_session.commit()
+            flash('Du hast einen Tagebucheintrag erstellt!')
+        return redirect(url_for('logged_in'))
+    return render_template('tagebuch.jinja', form=form)
 
 @app.route('/password', methods=["GET", "POST"])
 @login_required
