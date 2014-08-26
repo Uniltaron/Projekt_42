@@ -1,0 +1,25 @@
+{% extends 'base2.jinja' %}
+
+{% block content %}
+<h1>Dein Tagebuch</h1>
+<p>
+{% if diaries %}
+<table class="table table-striped">
+    <tr>
+        <th>Datum</th>
+        <th>Text</th>
+    </tr>
+{% for diary in diaries %}
+    <tr>
+        <td>{{ diary.date }}</td>
+        <td>{{ diary.text }}</td>
+        <td> <a href="{{ url_for('diary_edit', diary_id=diary.id) }}" class="btn btn-success" role="button">bearbeiten</a> <a href="{{ url_for('diary_delete', diary_id=diary.id) }}" class="btn btn-danger" role="button">löschen</a> </td>
+
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<b>Dein Tagebuch ist noch leer. Schreib doch ein paar Einträge rein!</b>
+{% endif %}
+</p>
+{% endblock %}

@@ -1,13 +1,14 @@
 from flask import Flask, render_template, url_for, redirect, flash, request, session
 import config
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
-from models import User, Contact
+from models import User, Contact, Diary
 from database import db_session
-from forms import LoginForm, EditPasswordForm, NewUserForm, TagebuchForm, EditUserForm, EditUserPasswordForm, NewContactForm, ContactSearchForm
+from forms import LoginForm, EditPasswordForm, NewDiaryForm, NewUserForm, EditUserForm, EditUserPasswordForm, NewContactForm, ContactSearchForm
 from hash_passwords import make_hash
 from sqlalchemy import asc, func
 import datetime
 from collections import OrderedDict
+from database import *
 
 
 app = Flask(__name__)
@@ -105,7 +106,7 @@ def user_add():
             db_session.add(new_user)
             db_session.commit()
             flash('Neuer Nutzer erfolgreich angelegt!')
-            return redirect(url_for('logged_in'))
+            return redirect(url_for('dashboard'))
         else:
             flash('Neuer Nutzer konnte nicht angelegt werden!')
     return render_template('user_add.jinja', form=form)
@@ -150,10 +151,16 @@ def user_list():
 @app.route('/contacts')
 @login_required
 def contacts():
-    contacts = Contact.query.filter_by(user_id=current_user.id).all()
-    return render_template('contacts.jinja', contacts=contacts)
+    result = Contact.query.filter_by(user_id=current_user.id).order_by('lastname').all()
+    return render_template('contacts.jinja', contacts=result)
 
-@app.route('/contact/add', methods=["GET", "POST"])
+@app.route('/diaries')
+@login_required
+def diaries():
+    result = Diary.query.filter_by(user_id=current_user.id).order_by('date').all()
+    return render_template('diaries.jinja', diaries=result)
+
+@app.route('/contac/add', methods=["GET", "POST"])
 @login_required
 def contact_add():
     form = NewContactForm()
@@ -163,8 +170,35 @@ def contact_add():
         db_session.commit()
         flash('Neuer Kontakt angelegt!')
         return redirect(url_for('contacts'))
-    #form = None
     return render_template('contact_add.jinja', form=form)
+
+@app.route('/diary/add', methods=["GET", "POST"])
+@login_required
+def diary_add():
+    form = NewDiaryForm()
+    if form.validate_on_submit():
+        new_diary = Diary(date=form.date.data, text=form.text.data, user_id=current_user.id)
+        db_session.add(new_diary)
+        db_session.commit()
+        flash('Neuer Tagebucheintrag angelegt!')
+        return redirect(url_for('diaries'))
+    return render_template('diary_add.jinja', form=form)
+
+@app.route('/diary/edit/<contact_id>', methods=["GET", "POST"])
+@login_required
+def diary_edit(diary_id):
+    result = Diary.query.filter_by(id=diary_id).first()
+    if not result:
+        flash('Tagebucheintrag existiert nicht!')
+        return redirect(url_for('diaries'))
+    form = NewDiaryForm(obj=result)
+    if form.validate_on_submit():
+        form.populate_obj(result)
+        db_session.add(result)
+        db_session.commit()
+        flash('Tagebucheintrag erfolgreich aktualisiert!')
+        return redirect(url_for('diaries'))
+    return render_template('dairy_edit.jinja', form=form, diary=result)
 
 @app.route('/contact/edit/<contact_id>', methods=["GET", "POST"])
 @login_required
@@ -267,4 +301,5 @@ def contacts_search():
 # Neue Routen und View-Funktionen fuer Projekt 1 - ENDE
 
 if __name__ == "__main__":
+    init_db()
     app.run()

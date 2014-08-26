@@ -9,7 +9,7 @@ class User(UserMixin, Base):
     id = Column(Integer, primary_key=True)
     username = Column(Text, nullable=False, unique=True)
     password = Column(Text, nullable=False)
-    tagebucheintrag = Column(Text, nullable=False)
+#    diary = Column(Text, nullable=False, default="")
     active = Column(Boolean, nullable=False, default=True)
 
     def __init__(self, username=None, password=None, active=False):
@@ -42,7 +42,7 @@ class Contact(Base):
     street = Column(Text, nullable=True)
     zip = Column(Text, nullable=True)
     city = Column(Text, nullable=True)
-    birthdate = Column(Date, nullable=True)
+    birthdate = Column(Text, nullable=True)
     landline = Column(Text, nullable=True)
     mobile_phone = Column(Text, nullable=True)
     email = Column(Text, nullable=True)
@@ -68,3 +68,19 @@ class Contact(Base):
 
     def __repr__(self):
         return '<%s(%r, %r)>' % (self.__class__.__name__, self.lastname, self.firstname)
+
+class Diary(Base):
+    __tablename__ = 'diaries'
+    id = Column(Integer, primary_key=True)
+    date = Column(Text, nullable=False)
+    text = Column(Text, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = relationship('User', backref = backref('diaries', lazy = 'dynamic'))
+
+    def __init__(self, date=None, text=None, user_id=None):
+        self.user_id = user_id
+        self.date = date
+        self.text = text
+
+    def __repr__(self):
+        return '<%s(%r, %r)>' % (self.__class__.__name__, self.date, self.user_id)

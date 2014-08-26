@@ -14,11 +14,13 @@ def init_db():
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
     import models
+    clear_db()
     Base.metadata.create_all(bind=engine)
-    admin_password = make_hash('test1234')
-    admin_user = models.User(username='admin', password = admin_password, active=True)
+    admin_password = make_hash('test')
+    admin_user = models.User(username='test', password = admin_password, active=True)
     db_session.add(admin_user)
     db_session.commit()
+    print "fertig!"
 
 def clear_db():
     Base.metadata.drop_all(bind=engine)

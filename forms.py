@@ -26,24 +26,28 @@ class EditUserForm(Form):
     username = TextField('Username', validators=[DataRequired(), Length(min=5)])
     active = BooleanField('Active', default=True)
 
-class TagebuchForm(Form):
-    tagebuch = TextField('Tagebuch', validators=[DataRequired(), Length(min=5)])
+# class TagebuchForm(Form):
+#     tagebuch = TextField('Tagebuch', validators=[DataRequired(), Length(min=5)])
 
 
 class NewContactForm(Form):
     lastname = TextField('Nachname', validators=[DataRequired()])
-    firstname = TextField('Vorname', validators=[DataRequired()])
+    firstname = TextField('Vorname')
     title = TextField('Titel')
     street = TextField('Strasse')
     zip = TextField('PLZ')
     city = TextField('Stadt')
-    birthdate = DateField('Geburtsdatum')
+    birthdate = TextField('Geburtsdatum')
     landline = TextField('Telefon (Festnetz)')
     mobile_phone = TextField('Telefon (mobil)')
     email = TextField('E-Mail')
     homepage = TextField('Homepage')
     handy = TextField('Handynummer')
     twitter = TextField('Twitter', validators=[Length(max=15)])
+
+class NewDiaryForm(Form):
+    date = TextField('Datum', validators=[DataRequired()])
+    text = TextField('Text', validators=[DataRequired()])
 
 class ContactSearchForm(Form):
     searchfield = SelectField('Suche Nach:', choices=[('lastname', 'Nachname'), ('firstname', 'Vorname'), ('city', 'Stadt')])

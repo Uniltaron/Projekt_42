@@ -1,31 +1,42 @@
-{% extends 'base.jinja' %}
+{% extends 'base2.jinja' %}
 
-{% block title %}Flaskspiel - Login{% endblock %}
+{% block title %}Adressbuch-App - Login{% endblock %}
 
 {% block content %}
 <h1>Login</h1>
 <p>
-Vorbereitung f&uuml;r das Login-Formular:
 <br />
+
 <form method="POST" action="{{ url_for('login', next=request.args.get('next')) }}">
     {{ form.hidden_tag() }}
-    {{ form.username.label }} {{ form.username(size=20) }}
+    {{ form.username.label }} {{ form.username(type="text", class_="form-control", placeholder="Dein Nutzername") }}
     {% if form.username.errors %}
     {% for error in form.username.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.password.label }} {{ form.password(size=20) }}
+    {{ form.password.label }} {{ form.password(type="password", class_="form-control", placeholder="Dein Passwort") }}
     {% if form.password.errors %}
     {% for error in form.password.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.remember.label }} {{ form.remember(size=20) }}
-    <br />
-    <input type="submit" value="Go">
+
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
 </form>
 </p>
 {% endblock %}

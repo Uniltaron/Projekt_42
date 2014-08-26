@@ -1,95 +1,100 @@
-{% extends 'base.jinja' %}
+{% extends 'base2.jinja' %}
 
 {% block content %}
 <h1>Kontakt hinzuf&uuml;gen</h1>
 <p>
 <form method="POST" action="{{ url_for('contact_add', next=request.args.get('next')) }}">
     {{ form.hidden_tag() }}
-    {{ form.lastname.label }} {{ form.lastname }}
+    {{ form.lastname (type="text", class_="form-control",  placeholder="Dein Nachname")}}
     {% if form.lastname.errors %}
     {% for error in form.lastname.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.firstname.label }} {{ form.firstname }}
+    {{ form.firstname (type="text", class_="form-control", placeholder="Dein Vorname")}}
     {% if form.firstname.errors %}
     {% for error in form.firstname.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.title.label }} {{ form.title }}
+    {{ form.title (type="text", class_="form-control", placeholder="Dein Titel")}}
     {% if form.title.errors %}
     {% for error in form.title.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.street.label }} {{ form.street }}
+    {{ form.street (type="text", class_="form-control", placeholder="Dein Strasse")}}
     {% if form.street.errors %}
     {% for error in form.street.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.zip.label }} {{ form.zip }}
+    {{ form.zip (type="text", class_="form-control", placeholder="Deine Postleitzahl")}}
     {% if form.zip.errors %}
     {% for error in form.zip.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.city.label }} {{ form.city }}
+    {{ form.city (type="text", class_="form-control", placeholder="Deine Stadt")}}
     {% if form.city.errors %}
     {% for error in form.city.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.birthdate.label }} {{ form.birthdate }}
+    {{ form.birthdate (type="text", class_="form-control", placeholder="Dein Geburtstag")}}
     {% if form.birthdate.errors %}
     {% for error in form.birthdate.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.landline.label }} {{ form.landline }}
+    {{ form.landline (type="text", class_="form-control", placeholder="Dein Festnetzanschluss")}}
     {% if form.landline.errors %}
     {% for error in form.landline.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.mobile_phone.label }} {{ form.mobile_phone }}
+    {{ form.mobile_phone (type="text", class_="form-control", placeholder="Deine Handnummer")}}
     {% if form.mobile_phone.errors %}
     {% for error in form.mobile_phone.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.email.label }} {{ form.email }}
+    {{ form.email (type="text", class_="form-control", placeholder="Deine Email")}}
     {% if form.email.errors %}
     {% for error in form.email.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.homepage.label }} {{ form.homepage }}
+    {{ form.homepage (type="text", class_="form-control", placeholder="Deine Homepage")}}
     {% if form.homepage.errors %}
     {% for error in form.homepage.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.twitter.label }} {{ form.twitter }}
+    {{ form.twitter (type="text", class_="form-control", placeholder="Dein Twitteraccount")}}
     {% if form.twitter.errors %}
     {% for error in form.twitter.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    <input type="submit" value="Go">
+    </div>
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Abschicken</button></div></div>
+    </div>
 </form>
 </p>
+</br>
 {% endblock %}

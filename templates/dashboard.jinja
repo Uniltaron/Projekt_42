@@ -8,27 +8,19 @@
 Von hier aus kannst du alle Funktionen von Adressbuch-App nutzen. Viel Spass dabei.<br/><br/>
 
 
-<div id="navigation">
+<div id="navigation" >
 {% if current_user.is_anonymous() %}
 <a href="{{ url_for('index') }}">Startseite</a><br/>
 <a href="{{ url_for('login') }}">Login</a><br/>
 {% else %}
-<b>Navigation:</b>
-<br />
-<a href="{{ url_for('index') }}">Startseite</a><br/>
-<a href="{{ url_for('logged_in') }}">Dashboard</a><br/>
-<a href="{{ url_for('password') }}">eigenes Passwort ändern</a><br/>
-<a href="{{ url_for('user_list') }}">Liste aller Nutzer</a><br/>
-<a href="{{ url_for('logout') }}">Ausloggen</a>
-<br /><br />
 <b>Adressbuch:</b><br />
-<a href="{{ url_for('contacts') }}">Alle Kontakte</a></br>
-<a href="{{ url_for('contacts_search') }}">Suche</a></br>
-<a href="{{ url_for('contact_add') }}">Kontakt hinzuf&uuml;gen</a></br>
-<a href="{{ url_for('contacts_cities') }}">Orte</a></br>
-<a href="{{ url_for('contacts_birthdays_upcoming') }}">Kommende Geburtstage</a></br>
-<a href="{{ url_for('contacts_birthdays') }}">Geburtstagsliste</a></br>
-<a href="{{ url_for('tagebuch') }}">Tagebuch</a>
+<a href="{{ url_for('contacts') }}" class="btn btn-warning" role="button">Alle Kontakte</a>
+<a href="{{ url_for('contact_add') }}"class="btn btn-warning" role="button">Kontakt hinzuf&uuml;gen</a>
+</br>
+</br>
+<b>Tagebuch:</b><br />
+<a href="{{ url_for('diaries') }}" class="btn btn-warning" role="button">Alle Tageb&uuml;cher</a>
+<a href="{{ url_for('diary_add') }}"class="btn btn-warning" role="button">Tagebuch hinzuf&uuml;gen</a>
 
 
     {% endif %}
@@ -44,6 +36,7 @@ Von hier aus kannst du alle Funktionen von Adressbuch-App nutzen. Viel Spass dab
     </ul>
   {% endif %}
 {% endwith %}
-<a href="{{ url_for('logout') }}">Logout</a>
+</br>
+<a href="{{ url_for('logout') }}"class="btn btn-danger" role="button">Logout</a>
 </p>
 {% endblock %}

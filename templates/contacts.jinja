@@ -1,26 +1,26 @@
-{% extends 'base.jinja' %}
+{% extends 'base2.jinja' %}
 
 {% block content %}
 <h1>Dein Adressbuch</h1>
 <p>
 {% if contacts %}
-<table>
-<tr>
-<th>Nachname</th>
-<th>Vorname</th>
-<th>Geburtsdatum</th>
-<th>Email</th>
-<th>Aktionen</th>
-</tr>
+<table class="table table-striped">
+    <tr>
+        <th>Nachname</th>
+        <th>Vorname</th>
+        <th>Geburtsdatum</th>
+        <th>Email</th>
+        <th>Aktionen</th>
+    </tr>
 {% for contact in contacts %}
-<tr>
-<td>{{ contact.nachname }}</td>
-<td>{{ contact.vorname }}</td>
-<td>{{ contact.geburtstag }}</td>
-<td>{{ contact.email }}</td>
+    <tr>
+        <td>{{ contact.lastname }}</td>
+        <td>{{ contact.firstname }}</td>
+        <td>{{ contact.birthdate }}</td>
+        <td>{{ contact.email }}</td>
+        <td> <a href="{{ url_for('contact_edit', contact_id=contact.id) }}" class="btn btn-success" role="button">bearbeiten</a> <a href="{{ url_for('contact_delete', contact_id=contact.id) }}" class="btn btn-danger" role="button">löschen</a> </td>
 
-<td><a href="{{ url_for('contact_edit', contact_id=contact.id) }}">bearbeiten</a> | <a href="{{ url_for('contact_delete', contact_id=contact.id) }}">l&ouml;schen</a>| <a href="{{ url_for('contact_show', contact_id=contact.id) }}">anzeigen</a></td>
-</tr>
+    </tr>
 {% endfor %}
 </table>
 {% else %}

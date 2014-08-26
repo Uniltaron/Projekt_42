@@ -9,6 +9,13 @@
 
 </head>
 <body>
+<b>Navigation:</b>
+<br />
+<a href="{{ url_for('index') }}" class="btn btn-primary" role="button">Startseite</a>
+<a href="{{ url_for('logged_in') }}"class="btn btn-success" role="button">Dashboard</a>
+<a href="{{ url_for('password') }}"class="btn btn-success" role="button">eigenes Passwort ändern</a>
+<a href="{{ url_for('logout') }}"class="btn btn-danger" role="button">Ausloggen</a>
+<br /><br />
     {% block content%} Mein Content {%endblock%}
 
 </body>

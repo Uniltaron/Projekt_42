@@ -1,0 +1,29 @@
+{% extends 'base2.jinja' %}
+
+{% block content %}
+<h1>Tagebucheintrag bearbeiten :: {{ diary.date }} {{ diary.text }}</h1>
+<p>
+<form method="POST" action="{{ url_for('diary_edit', id=diary.id, next=request.args.get('next')) }}">
+    {{ form.hidden_tag() }}
+    {{ form.date (type="text", class_="form-control",  placeholder="Datum")}}
+    {% if form.date.errors %}
+    {% for error in form.date.errors %}
+    <span class=text-error>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+    <br />
+    {{ form.text (type="text", class_="form-control", placeholder="Text")}}
+    {% if form.text.errors %}
+    {% for error in form.text.errors %}
+    <span class=text-error>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+    <br />
+    </div>
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Speichern</button>
+    </div>
+</form>
+</p>
+{% endblock %}
