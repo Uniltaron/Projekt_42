@@ -9,6 +9,11 @@ from sqlalchemy import asc, func
 import datetime
 from collections import OrderedDict
 from database import *
+import htmlCalendar
+
+myCal = htmlCalendar.MonthlyCalendar()
+
+	
 
 
 app = Flask(__name__)
