@@ -9,9 +9,9 @@ from sqlalchemy import asc, func
 import datetime
 from collections import OrderedDict
 from database import *
-import htmlCalendar
+import calendar
 
-myCal = htmlCalendar.MonthlyCalendar()
+
 
 	
 
@@ -70,7 +70,7 @@ def logout():
 @login_required
 def logged_in():
     return render_template('dashboard.jinja')
-
+	
 @app.route('/tagebuch', methods=["GET", "POST"])
 @login_required
 def tagebuch():
@@ -84,6 +84,7 @@ def tagebuch():
             flash('Du hast einen Tagebucheintrag erstellt!')
         return redirect(url_for('logged_in'))
     return render_template('tagebuch.jinja', form=form)
+	
 
 @app.route('/password', methods=["GET", "POST"])
 @login_required
@@ -302,6 +303,11 @@ def contacts_search():
             flash('Ungueltige Feldoption!')
             return redirect(url_for('contacts_search'))
     return render_template('contacts_search.jinja', form=form)
+	
+@app.route("/calendar")							#einfügen eines Kalenders
+@login_required
+def logged_in():
+    return render_template('calendar.jinja')
 
 # Neue Routen und View-Funktionen fuer Projekt 1 - ENDE
 
