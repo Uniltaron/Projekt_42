@@ -9,7 +9,7 @@ class User(UserMixin, Base):
     id = Column(Integer, primary_key=True)
     username = Column(Text, nullable=False, unique=True)
     password = Column(Text, nullable=False)
-#    diary = Column(Text, nullable=False, default="")
+   # diary = Column(Text, nullable=False, default="")
     active = Column(Boolean, nullable=False, default=True)
 
     def __init__(self, username=None, password=None, active=False):
@@ -52,6 +52,7 @@ class Contact(Base):
     user = relationship('User', backref = backref('contacts', lazy = 'dynamic'))
 
     def __init__(self, lastname, firstname, user_id, title=None, street=None, zip=None, city=None, birthdate=None, landline=None, mobile_phone=None, email=None, homepage=None, twitter=None):
+
         self.lastname = lastname
         self.firstname = firstname
         self.user_id = user_id

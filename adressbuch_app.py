@@ -3,18 +3,13 @@ import config
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
 from models import User, Contact, Diary
 from database import db_session
-from forms import LoginForm, EditPasswordForm, NewDiaryForm, NewUserForm, EditUserForm, EditUserPasswordForm, NewContactForm, ContactSearchForm
+from forms import LoginForm, RegisterForm, EditPasswordForm, NewDiaryForm, NewUserForm, EditUserForm, EditUserPasswordForm, NewContactForm, ContactSearchForm
 from hash_passwords import make_hash
 from sqlalchemy import asc, func
 import datetime
 from collections import OrderedDict
 from database import *
 
-
-
-
-
-	
 
 
 app = Flask(__name__)
@@ -44,7 +39,6 @@ def adressbuch():                                   # Name der Methode
     return render_template('adressbuch.jinja')      # Name der JINJA-Datei
 
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -61,6 +55,21 @@ def login():
             flash('Falscher Username oder Passwort.')
     return render_template('login.jinja', form=form)
 
+@app.route("/register",methods=["GET","POST"])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None:
+            new_user = User(username=form.username.data, password=make_hash(form.password.data))
+            if new_user:
+                db_session.add(new_user)
+                db_session.commit()
+            return redirect(url_for("login"))
+        else:
+            flash('Username still exists!')
+    return render_template("register.jinja",form=form)
+
 @app.route("/logout")
 @login_required
 def logout():
@@ -72,7 +81,7 @@ def logout():
 @login_required
 def logged_in():
     return render_template('dashboard.jinja')
-	
+
 @app.route('/tagebuch', methods=["GET", "POST"])
 @login_required
 def tagebuch():
@@ -84,9 +93,8 @@ def tagebuch():
             db_session.add(user)
             db_session.commit()
             flash('Du hast einen Tagebucheintrag erstellt!')
-        return redirect(url_for('logged_in'))
+        return redirect(url_for('dashboard'))
     return render_template('tagebuch.jinja', form=form)
-	
 
 @app.route('/password', methods=["GET", "POST"])
 @login_required
@@ -99,7 +107,7 @@ def password():
             db_session.add(user)
             db_session.commit()
             flash('Passwort erfolgreich aktualisiert!')
-            return redirect(url_for('logged_in'))
+            return redirect(url_for('dashboard'))
         else:
             flash('Passwort nicht aktualisiert! Aktuelles Passwort nicht korrekt!')
     return render_template('password.jinja', form=form)
@@ -305,10 +313,6 @@ def contacts_search():
             flash('Ungueltige Feldoption!')
             return redirect(url_for('contacts_search'))
     return render_template('contacts_search.jinja', form=form)
-	
-
-
-# Neue Routen und View-Funktionen fuer Projekt 1 - ENDE
 
 if __name__ == "__main__":
     init_db()

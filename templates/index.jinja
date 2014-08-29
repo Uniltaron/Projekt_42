@@ -1,4 +1,4 @@
-{% extends 'base.jinja' %}
+{% extends 'base2.jinja' %}
 
 {% block title %}Dein Kontakte Buch - Home{% endblock%}
 {% block content %}
@@ -12,7 +12,6 @@ Hier kannst du all deine Kontakte hinterlegen. Ausserdem bietet dir diese App no
 Probier die App doch sogleich aus!
 <br>
 <br>
-<a href="{{ url_for('adressbuch') }}">Adressbuch</a>
 
 
 {% if current_user.is_anonymous() %}

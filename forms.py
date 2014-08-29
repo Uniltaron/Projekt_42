@@ -7,6 +7,10 @@ class LoginForm(Form):
     password = PasswordField('Passwort', validators=[DataRequired()])
     remember = BooleanField('Remember me', default=False)
 
+class RegisterForm(Form):
+    username = TextField("Benutzername:",validators=[DataRequired(),Length(min=3)])
+    password = PasswordField("Passwort:", validators=[DataRequired(),Length(min=1)])
+    confirm = PasswordField("Passwort wiederholen:", validators=[DataRequired(),Length(min=1),EqualTo("password",message="Ups. Deine Eingaben passen nicht zusammen")])
 
 class EditPasswordForm(Form):
     old_password = PasswordField('Aktuelles Passwort', validators=[DataRequired()])

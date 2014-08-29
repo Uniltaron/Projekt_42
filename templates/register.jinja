@@ -1,0 +1,45 @@
+{% extends 'base2.jinja' %}
+{% block title %}Registrierung{% endblock%}
+{% block content %}
+<form method="POST" action="{{ url_for("register") }}">
+<h1>Registrierung</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+{% for message in messages %}
+<li>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+{{ form.csrf_token }}
+<div class="input-group">
+<span class="input-group-addon">Benutzername</span>
+{{ form.username(size=20, type="text", class_='form-control') }}
+</div>
+{% if form.username.errors %}
+{% for error in form.username.errors %}
+<span class=text-error>{{ error }}</span>
+{% endfor %}
+{% endif %}
+<div class="input-group">
+<span class="input-group-addon">Passwort</span>
+{{ form.password(size=20, type="password", class_='form-control') }}
+</div>
+{% if form.password.errors %}
+{% for error in form.password.errors %}
+<span class=text-error>{{ error }}</span>
+{% endfor %}
+{% endif %}
+<div class="input-group">
+<span class="input-group-addon">Passwort wiederholen</span>
+{{ form.confirm(size=20, type="password", class_='form-control') }}
+</div>
+{% if form.confirm.errors %}
+{% for error in form.confirm.errors %}
+<span class=text-error>{{ error }}</span>
+{% endfor %}
+{% endif %}
+<input type="submit" value="Registrieren" class="btn btn-default">
+</form>
+{% endblock %}
