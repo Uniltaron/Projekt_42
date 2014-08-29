@@ -9,7 +9,8 @@ from sqlalchemy import asc, func
 import datetime
 from collections import OrderedDict
 from database import *
-import calendar
+
+
 
 
 
@@ -41,6 +42,7 @@ def index():
 @app.route('/adressbuch')                           # URL
 def adressbuch():                                   # Name der Methode
     return render_template('adressbuch.jinja')      # Name der JINJA-Datei
+
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -304,10 +306,7 @@ def contacts_search():
             return redirect(url_for('contacts_search'))
     return render_template('contacts_search.jinja', form=form)
 	
-@app.route("/calendar")							#einfügen eines Kalenders
-@login_required
-def logged_in():
-    return render_template('calendar.jinja')
+
 
 # Neue Routen und View-Funktionen fuer Projekt 1 - ENDE
 
