@@ -5,7 +5,7 @@
 {% block content %}
 <h1>Adressbuch-App Dashboard</h1>
 <p>
-Von hier aus kannst du alle Funktionen von Adressbuch-App nutzen. Viel Spass dabei.<br/><br/>
+Von hier aus kannst du alle Funktionen von Adressbuch-App nutzen. Viel Spass dabei./ Here you can use all functions from the addressbook-app. Have fun!<br/><br/>
 
 
 <div id="navigation" >
@@ -14,13 +14,13 @@ Von hier aus kannst du alle Funktionen von Adressbuch-App nutzen. Viel Spass dab
 <a href="{{ url_for('login') }}">Login</a><br/>
 {% else %}
 <b>Adressbuch:</b><br />
-<a href="{{ url_for('contacts') }}" class="btn btn-warning" role="button">Alle Kontakte</a>
-<a href="{{ url_for('contact_add') }}"class="btn btn-warning" role="button">Kontakt hinzuf&uuml;gen</a>
+<a href="{{ url_for('contacts') }}" class="btn btn-warning" role="button">Alle Kontakte/All contacts</a>
+<a href="{{ url_for('contact_add') }}"class="btn btn-warning" role="button">Kontakt hinzuf&uuml;gen/Add contact</a>
 </br>
 </br>
 <b>Tagebuch:</b><br />
-<a href="{{ url_for('diaries') }}" class="btn btn-warning" role="button">Alle Tageb&uuml;cher</a>
-<a href="{{ url_for('diary_add') }}"class="btn btn-warning" role="button">Tagebuch hinzuf&uuml;gen</a>
+<a href="{{ url_for('diaries') }}" class="btn btn-warning" role="button">Alle Tageb&uuml;cher/All diarys</a>
+<a href="{{ url_for('diary_add') }}"class="btn btn-warning" role="button">Tagebuch hinzuf&uuml;gen/Add diary</a>
 
 
 </br>

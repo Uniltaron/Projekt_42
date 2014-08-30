@@ -1,5 +1,5 @@
 {% extends 'base2.jinja' %}
-{% block title %}Registrierung{% endblock%}
+{% block title %}Registrierung/Register{% endblock%}
 {% block content %}
 <form method="POST" action="{{ url_for("register") }}">
 <h1>Registrierung</h1>
@@ -14,7 +14,7 @@
 {% endwith %}
 {{ form.csrf_token }}
 <div class="input-group">
-<span class="input-group-addon">Benutzername</span>
+<span class="input-group-addon">Benutzername/Username</span>
 {{ form.username(size=20, type="text", class_='form-control') }}
 </div>
 {% if form.username.errors %}
@@ -23,7 +23,7 @@
 {% endfor %}
 {% endif %}
 <div class="input-group">
-<span class="input-group-addon">Passwort</span>
+<span class="input-group-addon">Passwort/Password</span>
 {{ form.password(size=20, type="password", class_='form-control') }}
 </div>
 {% if form.password.errors %}
@@ -32,7 +32,7 @@
 {% endfor %}
 {% endif %}
 <div class="input-group">
-<span class="input-group-addon">Passwort wiederholen</span>
+<span class="input-group-addon">Passwort wiederholen/Repeat password</span>
 {{ form.confirm(size=20, type="password", class_='form-control') }}
 </div>
 {% if form.confirm.errors %}
@@ -40,6 +40,6 @@
 <span class=text-error>{{ error }}</span>
 {% endfor %}
 {% endif %}
-<input type="submit" value="Registrieren" class="btn btn-default">
+<input type="submit" value="Registrieren/Register" class="btn btn-default">
 </form>
 {% endblock %}

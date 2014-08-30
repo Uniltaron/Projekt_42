@@ -1,18 +1,18 @@
 {% extends 'base2.jinja' %}
 
 {% block content %}
-<h1>Tagebucheintrag hinzuf&uuml;gen</h1>
+<h1>Tagebucheintrag hinzuf&uuml;gen / Add diary entry</h1>
 <p>
 <form method="POST" action="{{ url_for('diary_add', next=request.args.get('next')) }}">
     {{ form.hidden_tag() }}
-    {{ form.date (type="text", class_="form-control",  placeholder="Datum")}}
+    {{ form.date (type="text", class_="form-control",  placeholder="Datum / Date")}}
     {% if form.date.errors %}
     {% for error in form.date.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.text (type="text", class_="form-control", placeholder="Tagebucheintrag")}}
+    {{ form.text (type="text", class_="form-control", placeholder="Tagebucheintrag / Diary entry")}}
     {% if form.text.errors %}
     {% for error in form.text.errors %}
     <span class=text-error>{{ error }}</span>
@@ -22,7 +22,7 @@
     </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Speichern</button>
+                <button type="submit" class="btn btn-default">Speichern/Save</button>
             </div>
         </div>
     </div>

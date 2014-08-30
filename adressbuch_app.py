@@ -47,12 +47,12 @@ def login():
         if user is not None and user.valid_password(form.password.data):
             if login_user(user, remember=form.remember.data):
                 session.permanent = not form.remember.data
-                flash('Du bist erfolgreich eingeloggt')
+                flash('Du bist erfolgreich eingeloggt / You successfully logged in')
                 return redirect(request.args.get('next') or url_for('logged_in'))
             else:
-                flash('Dieser Account ist deaktiviert')
+                flash('Dieser Account ist deaktiviert / This account is deactivated')
         else:
-            flash('Falscher Username oder Passwort.')
+            flash('Falscher Username oder Passwort. / Wrong username or password')
     return render_template('login.jinja', form=form)
 
 @app.route("/register",methods=["GET","POST"])
@@ -74,7 +74,7 @@ def register():
 @login_required
 def logout():
     logout_user()
-    flash('Geschafft! Du hast dich gerade erfolgreich ausgeloggt. Bis zum naechsten Mal')
+    flash('Geschafft! Du hast dich gerade erfolgreich ausgeloggt. Bis zum naechsten Mal / Done! You successfully logged out')
     return redirect(url_for('index'))
 
 @app.route("/dashboard")
@@ -92,7 +92,7 @@ def tagebuch():
             user.tagebucheintrag = form.tagebuch
             db_session.add(user)
             db_session.commit()
-            flash('Du hast einen Tagebucheintrag erstellt!')
+            flash('Du hast einen Tagebucheintrag erstellt! /You created a diary entry!')
         return redirect(url_for('dashboard'))
     return render_template('tagebuch.jinja', form=form)
 
@@ -106,10 +106,10 @@ def password():
             user.password = make_hash(form.password.data)
             db_session.add(user)
             db_session.commit()
-            flash('Passwort erfolgreich aktualisiert!')
+            flash('Passwort erfolgreich aktualisiert! / Password updated successfully!')
             return redirect(url_for('dashboard'))
         else:
-            flash('Passwort nicht aktualisiert! Aktuelles Passwort nicht korrekt!')
+            flash('Passwort nicht aktualisiert! Aktuelles Passwort nicht korrekt! / Password not updated! Contemporary password not orrect!')
     return render_template('password.jinja', form=form)
 
 @app.route('/user/add', methods=["GET", "POST"])
@@ -121,10 +121,10 @@ def user_add():
         if new_user:
             db_session.add(new_user)
             db_session.commit()
-            flash('Neuer Nutzer erfolgreich angelegt!')
+            flash('Neuer Nutzer erfolgreich angelegt! / New user successfully created!')
             return redirect(url_for('dashboard'))
         else:
-            flash('Neuer Nutzer konnte nicht angelegt werden!')
+            flash('Neuer Nutzer konnte nicht angelegt werden! / New user couldnt be created!')
     return render_template('user_add.jinja', form=form)
 
 @app.route('/user/edit/<user_id>', methods=["GET", "POST"])
@@ -136,7 +136,7 @@ def user_edit(user_id):
         form.populate_obj(user)
         db_session.add(user)
         db_session.commit()
-        flash('Nutzerdaten erfolgreich aktualisiert!')
+        flash('Nutzerdaten erfolgreich aktualisiert! / Userdata successfully updated!')
         return redirect(url_for('user_list'))
     return render_template('user_edit.jinja', form=form, user=user)
 
@@ -150,10 +150,10 @@ def user_password(user_id):
             user.password = make_hash(form.password.data)
             db_session.add(user)
             db_session.commit()
-            flash('Passwort erfolgreich aktualisiert!')
+            flash('Passwort erfolgreich aktualisiert! / Password successfully updated!')
             return redirect(url_for('user_list'))
         else:
-            flash('Passwort nicht aktualisiert! Aktuelles Passwort nicht korrekt!')
+            flash('Passwort nicht aktualisiert! Aktuelles Passwort nicht korrekt! / Password not updated! Contemporary password not correct!')
     return render_template('user_password.jinja', form=form, user=user)
 
 @app.route('/user/list')
@@ -184,7 +184,7 @@ def contact_add():
         new_contact = Contact(lastname=form.lastname.data, firstname=form.firstname.data, user_id=current_user.id, title=form.title.data, street=form.street.data, zip=form.zip.data, city=form.city.data, birthdate=form.birthdate.data, landline=form.landline.data, mobile_phone=form.mobile_phone.data, email=form.email.data, homepage=form.homepage.data, twitter=form.twitter.data)
         db_session.add(new_contact)
         db_session.commit()
-        flash('Neuer Kontakt angelegt!')
+        flash('Neuer Kontakt angelegt! / New contact created!')
         return redirect(url_for('contacts'))
     return render_template('contact_add.jinja', form=form)
 
@@ -196,7 +196,7 @@ def diary_add():
         new_diary = Diary(date=form.date.data, text=form.text.data, user_id=current_user.id)
         db_session.add(new_diary)
         db_session.commit()
-        flash('Neuer Tagebucheintrag angelegt!')
+        flash('Neuer Tagebucheintrag angelegt! / New diary entry created!')
         return redirect(url_for('diaries'))
     return render_template('diary_add.jinja', form=form)
 
@@ -205,14 +205,14 @@ def diary_add():
 def diary_edit(diary_id):
     result = Diary.query.filter_by(id=diary_id).first()
     if not result:
-        flash('Tagebucheintrag existiert nicht!')
+        flash('Tagebucheintrag existiert nicht! / Diary entry doesnt exist!')
         return redirect(url_for('diaries'))
     form = NewDiaryForm(obj=result)
     if form.validate_on_submit():
         form.populate_obj(result)
         db_session.add(result)
         db_session.commit()
-        flash('Tagebucheintrag erfolgreich aktualisiert!')
+        flash('Tagebucheintrag erfolgreich aktualisiert! / Diary entry successfully updated!')
         return redirect(url_for('diaries'))
     return render_template('dairy_edit.jinja', form=form, diary=result)
 
@@ -221,14 +221,14 @@ def diary_edit(diary_id):
 def contact_edit(contact_id):
     contact = Contact.query.filter_by(user_id=current_user.id, id=contact_id).first()
     if not contact:
-        flash('Kontakt existiert nicht!')
+        flash('Kontakt existiert nicht! / Contact doesnt exist!')
         return redirect(url_for('contacts'))
     form = NewContactForm(obj=contact)
     if form.validate_on_submit():
         form.populate_obj(contact)
         db_session.add(contact)
         db_session.commit()
-        flash('Kontakt erfolgreich aktualisiert!')
+        flash('Kontakt erfolgreich aktualisiert! / Contaxt successfully updated!')
         return redirect(url_for('contacts'))
     return render_template('contact_edit.jinja', form=form, contact=contact)
 
@@ -239,11 +239,11 @@ def contact_delete(contact_id):
     # ob der ausgewaehlte Nutzer wirklich geloescht werden soll
     contact = Contact.query.filter_by(user_id=current_user.id, id=contact_id).first()
     if not contact:
-        flash('Kontakt existiert nicht!')
+        flash('Kontakt existiert nicht! / Contact doesnt exist!')
         return redirect(url_for('contacts'))
     db_session.delete(contact)
     db_session.commit()
-    flash('Kontakt entfernt!')
+    flash('Kontakt entfernt! / Contact deleted!')
     return redirect(url_for('contacts'))
 
 @app.route('/contacts/cities')
@@ -310,7 +310,7 @@ def contacts_search():
             results = Contact.query.filter_by(user_id=current_user.id).filter(Contact.city.like('%'+form.searchterm.data+'%')).order_by('city').all()
             return render_template('contacts_search.jinja', form=form, results = results)
         else:
-            flash('Ungueltige Feldoption!')
+            flash('Ungueltige Feldoption! / Invalid fieldoption!')
             return redirect(url_for('contacts_search'))
     return render_template('contacts_search.jinja', form=form)
 

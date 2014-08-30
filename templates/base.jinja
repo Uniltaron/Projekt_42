@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
 <head>
-<title>{% block title %}Deine Adressbuch App{% endblock %}</title>
+<title>{% block title %}Deine Adressbuch App / Your address book app{% endblock %}</title>
 </head>
 <body>
 <div id="navigation">
 {% if current_user.is_anonymous() %}
-<a href="{{ url_for('index') }}">Startseite</a>
+<a href="{{ url_for('index') }}">Startseite / Homepage</a>
 <a href="{{ url_for('login') }}">Login</a>
 {% else %}
 <b>Navigation:</b>

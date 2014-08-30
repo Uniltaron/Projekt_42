@@ -5,70 +5,70 @@
 <p>
 <form method="POST" action="{{ url_for('contact_edit', contact_id=contact.id, next=request.args.get('next')) }}">
     {{ form.hidden_tag() }}
-    {{ form.lastname (type="text", class_="form-control",  placeholder="Nachname")}}
+    {{ form.lastname (type="text", class_="form-control",  placeholder="Nachname / Last name")}}
     {% if form.lastname.errors %}
     {% for error in form.lastname.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.firstname (type="text", class_="form-control", placeholder="Vorname")}}
+    {{ form.firstname (type="text", class_="form-control", placeholder="Vorname / First name")}}
     {% if form.firstname.errors %}
     {% for error in form.firstname.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.title (type="text", class_="form-control", placeholder="Titel")}}
+    {{ form.title (type="text", class_="form-control", placeholder="Titel / Title")}}
     {% if form.title.errors %}
     {% for error in form.title.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.street (type="text", class_="form-control", placeholder="Strasse")}}
+    {{ form.street (type="text", class_="form-control", placeholder="Strasse / Street")}}
     {% if form.street.errors %}
     {% for error in form.street.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.zip (type="text", class_="form-control", placeholder="Postleitzahl")}}
+    {{ form.zip (type="text", class_="form-control", placeholder="Postleitzahl / Postal code")}}
     {% if form.zip.errors %}
     {% for error in form.zip.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.city (type="text", class_="form-control", placeholder="Stadt")}}
+    {{ form.city (type="text", class_="form-control", placeholder="Stadt / City")}}
     {% if form.city.errors %}
     {% for error in form.city.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.birthdate (type="text", class_="form-control", placeholder="Geburtstag")}}
+    {{ form.birthdate (type="text", class_="form-control", placeholder="Geburtstag / Birthday")}}
     {% if form.birthdate.errors %}
     {% for error in form.birthdate.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.landline (type="text", class_="form-control", placeholder="Festnetzanschluss")}}
+    {{ form.landline (type="text", class_="form-control", placeholder="Festnetzanschluss / Land line")}}
     {% if form.landline.errors %}
     {% for error in form.landline.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.mobile_phone (type="text", class_="form-control", placeholder="Handnummer")}}
+    {{ form.mobile_phone (type="text", class_="form-control", placeholder="Handnummer / Mobile phone number")}}
     {% if form.mobile_phone.errors %}
     {% for error in form.mobile_phone.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.email (type="text", class_="form-control", placeholder="Email")}}
+    {{ form.email (type="text", class_="form-control", placeholder="Email / Email")}}
     {% if form.email.errors %}
     {% for error in form.email.errors %}
     <span class=text-error>{{ error }}</span>
@@ -92,7 +92,7 @@
     </div>
         <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Speichern</button>
+            <button type="submit" class="btn btn-default">Speichern/Save</button>
     </div>
 </form>
 </p>

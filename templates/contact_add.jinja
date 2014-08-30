@@ -1,88 +1,88 @@
 {% extends 'base2.jinja' %}
 
 {% block content %}
-<h1>Kontakt hinzuf&uuml;gen</h1>
+<h1>Kontakt hinzuf&uuml;gen / add contact</h1>
 <p>
 <form method="POST" action="{{ url_for('contact_add', next=request.args.get('next')) }}">
     {{ form.hidden_tag() }}
-    {{ form.lastname (type="text", class_="form-control",  placeholder="Dein Nachname")}}
+    {{ form.lastname (type="text", class_="form-control",  placeholder="Dein Nachname / Last name")}}
     {% if form.lastname.errors %}
     {% for error in form.lastname.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.firstname (type="text", class_="form-control", placeholder="Dein Vorname")}}
+    {{ form.firstname (type="text", class_="form-control", placeholder="Dein Vorname / First name")}}
     {% if form.firstname.errors %}
     {% for error in form.firstname.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.title (type="text", class_="form-control", placeholder="Dein Titel")}}
+    {{ form.title (type="text", class_="form-control", placeholder="Dein Titel / Title")}}
     {% if form.title.errors %}
     {% for error in form.title.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.street (type="text", class_="form-control", placeholder="Dein Strasse")}}
+    {{ form.street (type="text", class_="form-control", placeholder="Deine Strasse / Street")}}
     {% if form.street.errors %}
     {% for error in form.street.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.zip (type="text", class_="form-control", placeholder="Deine Postleitzahl")}}
+    {{ form.zip (type="text", class_="form-control", placeholder="Deine Postleitzahl / Postal code")}}
     {% if form.zip.errors %}
     {% for error in form.zip.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.city (type="text", class_="form-control", placeholder="Deine Stadt")}}
+    {{ form.city (type="text", class_="form-control", placeholder="Deine Stadt / City")}}
     {% if form.city.errors %}
     {% for error in form.city.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.birthdate (type="text", class_="form-control", placeholder="Dein Geburtstag")}}
+    {{ form.birthdate (type="text", class_="form-control", placeholder="Dein Geburtstag / Birthday")}}
     {% if form.birthdate.errors %}
     {% for error in form.birthdate.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.landline (type="text", class_="form-control", placeholder="Dein Festnetzanschluss")}}
+    {{ form.landline (type="text", class_="form-control", placeholder="Dein Festnetzanschluss / Landline")}}
     {% if form.landline.errors %}
     {% for error in form.landline.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.mobile_phone (type="text", class_="form-control", placeholder="Deine Handnummer")}}
+    {{ form.mobile_phone (type="text", class_="form-control", placeholder="Deine Handnummer / Mobile phone number")}}
     {% if form.mobile_phone.errors %}
     {% for error in form.mobile_phone.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.email (type="text", class_="form-control", placeholder="Deine Email")}}
+    {{ form.email (type="text", class_="form-control", placeholder="Deine Email / Email")}}
     {% if form.email.errors %}
     {% for error in form.email.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.homepage (type="text", class_="form-control", placeholder="Deine Homepage")}}
+    {{ form.homepage (type="text", class_="form-control", placeholder="Deine Homepage / Homepage")}}
     {% if form.homepage.errors %}
     {% for error in form.homepage.errors %}
     <span class=text-error>{{ error }}</span>
     {% endfor %}
     {% endif %}
     <br />
-    {{ form.twitter (type="text", class_="form-control", placeholder="Dein Twitteraccount")}}
+    {{ form.twitter (type="text", class_="form-control", placeholder="Dein Twitteraccount / Twitter account")}}
     {% if form.twitter.errors %}
     {% for error in form.twitter.errors %}
     <span class=text-error>{{ error }}</span>
@@ -92,7 +92,7 @@
     </div>
         <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Abschicken</button></div></div>
+            <button type="submit" class="btn btn-default">Abschicken/ Send</button></div></div>
     </div>
 </form>
 </p>

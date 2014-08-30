@@ -1,7 +1,7 @@
 {% extends 'base2.jinja' %}
 
 {% block content %}
-<h1>Nutzer hinzufügen</h1>
+<h1>Nutzer hinzufügen/Add user</h1>
 <p>
 <form method="POST" action="{{ url_for('user_add', next=request.args.get('next')) }}">
     {{ form.hidden_tag() }}

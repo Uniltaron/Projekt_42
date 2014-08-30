@@ -1,7 +1,7 @@
 {% extends 'base2.jinja' %}
 
 {% block content %}
-<h1>Dein Tagebuch</h1>
+<h1>Dein Tagebuch / Your diary</h1>
 <p>
 {% if diaries %}
 <table class="table table-striped">
@@ -19,7 +19,7 @@
 {% endfor %}
 </table>
 {% else %}
-<b>Dein Tagebuch ist noch leer. Schreib doch ein paar Einträge rein!</b>
+<b>Dein Tagebuch ist noch leer. Schreib doch ein paar Einträge rein! / The diary is still empty. Add some entrys!</b>
 {% endif %}
 </p>
 <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=o1eobcqn28jf3tutcpdbahp42o%40group.calendar.google.com&amp;color=%230F4B38&amp;src=de.german%23holiday%40group.v.calendar.google.com&amp;color=%232F6309&amp;src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&amp;color=%23333333&amp;src=e_2_de%23weeknum%40group.v.calendar.google.com&amp;color=%232952A3&amp;ctz=Europe%2FBerlin" style=" border:solid 1px #777 " width="800" height="600" frameborder="0" scrolling="no"></iframe>

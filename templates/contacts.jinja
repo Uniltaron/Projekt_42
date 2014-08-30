@@ -1,16 +1,16 @@
 {% extends 'base2.jinja' %}
 
 {% block content %}
-<h1>Dein Adressbuch</h1>
+<h1>Dein Adressbuch / Your addressbook</h1>
 <p>
 {% if contacts %}
 <table class="table table-striped">
     <tr>
-        <th>Nachname</th>
-        <th>Vorname</th>
-        <th>Geburtsdatum</th>
+        <th>Nachname / Lastname</th>
+        <th>Vorname / Firstname</th>
+        <th>Geburtsdatum / Birthday</th>
         <th>Email</th>
-        <th>Aktionen</th>
+        <th>Aktionen / Actions</th>
     </tr>
 {% for contact in contacts %}
     <tr>
@@ -24,7 +24,7 @@
 {% endfor %}
 </table>
 {% else %}
-<b>Dein Adressbuch ist noch leer. Schreib doch ein paar Kontakte rein!</b>
+<b>Dein Adressbuch ist noch leer. Schreib doch ein paar Kontakte rein! / The addressbook is empty. Please add some contacts!</b>
 {% endif %}
 </p>
 
